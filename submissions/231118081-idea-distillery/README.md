@@ -1,154 +1,88 @@
-# Nokta Distillery
+# Nokta Draft
 
-Track: `Track C`
+## Seçilen Track
 
-One-line description: A mobile Expo app that turns messy project fragments into a structured, reviewable project-memory bundle.
+**Track C - Migration & Dedup**
 
-## Product Thesis
+## Kısa Açıklama
 
-Nokta Distillery is based on the idea that project knowledge should not remain trapped inside raw chats, notes, and temporary memory. Instead, messy project material should be distilled into a maintained, reviewable memory layer with traceability, contradictions, review states, and a proposed wiki patch.
+Nokta Draft, dağınık proje notlarını daha net ve karar vermeye uygun bir proje konsepti taslağına dönüştüren odaklı bir mobil uygulamadır. Uygulamanın ana değeri genel bir özet çıkarma yapmak ya da kullanıcıya kart yığını göstermek değildir. Uygulama, tekrar eden noktaları birleştirmek, çelişkileri görünür kılmak, tanımsız alanları ortaya çıkarmak ve sonucu daha güçlü bir çıktıya dönüştürmek için deterministik bir yerel motor kullanır.
 
-This submission implements a bounded MVP of that thesis. It is not a generic summarizer and it does not rely on a live AI API.
+## Uygulama Ne Yapar
 
-## What The App Implements
+- Kopyalanmış sohbetlerden, madde listelerinden veya karışık planlama metinlerinden ham not dökümü alır.
+- Bu dökümü küçük parçalara ayırır ve tekrar eden ifadeleri normalize eder.
+- Belirgin tekrarları ve örtüşmeleri iç fikir birimlerine indirger.
+- Aşağıdaki bölümlerden oluşan yapılandırılmış bir `Distilled Project Concept Draft` üretir:
+  - Concept Summary
+  - Problem and Intent
+  - Core Product Direction
+  - Key Features
+  - Constraints and Boundaries
+  - Contradictions and Tensions
+  - Undefined Areas
+  - Recommended Next Decisions
+- Sonuç ekranı içinde hafif gözden geçirme / iyileştirme etkileşimleri sunar:
+  - Sharpen Summary
+  - Tighten Scope
+  - Mark Decision
+- Ek bonus yetenek içerir: kritik seçimler onaylandıktan sonra konsepti daha net bir v1 çıktısına sıkılaştıran karar-kilitli bir handoff özeti üretir.
 
-- React Native + Expo mobile app under `submissions/231118081-idea-distillery/app/`
-- Four-screen flow:
-  - Input
-  - Processing
-  - Distilled Memory
-  - Clarify
-- Paste input, load sample input, clear input, and process input
-- Local deterministic distillation engine
-- Source fragmentation with stable IDs such as `S1`, `S2`, `S3`
-- Deduplicated idea cards
-- One canonical project summary
-- Role-specific views derived from the canonical summary
-- Fixed role tabs:
-  - Product
-  - Designer
-  - Frontend
-  - Backend
-  - AI/LLM
-- Contradiction detection for a small set of obvious conflict patterns
-- Clarification question generation
-- Source traceability and evidence ledger
-- Ambiguity budget
-- Human review states:
-  - pending
-  - confirmed
-  - needs_review
-  - discarded
-  - locked
-- Clickable review controls in the UI
-- Wiki Patch Preview as the visually prominent signature feature
-- Handoff Pack section for continuing the project in another session or tool
-- Near-dark, card-based UI aligned with the Stitch-derived design direction in `DESIGN.md`
+## Nasıl Çalıştırılır
 
-## What The App Does Not Implement
-
-- No live AI API integration
-- No real backend or cloud persistence
-- No real markdown wiki file writing; the app previews the patch only
-- No account system, sync, or collaboration features
-- No export flow for the handoff pack or patch preview
-- No persistence of review changes between app sessions
-- No broad natural-language intelligence beyond the local rule-based pipeline
-
-## Demo Flow
-
-Suggested teacher review flow:
-
-1. Open the app and start on the Input screen.
-2. Press `Load Sample` to use the included messy project dump.
-3. Inspect the metadata chips and the pipeline hint.
-4. Press `Process with Nokta`.
-5. Watch the Processing screen show the visible multi-step pipeline instead of a generic spinner.
-6. On Distilled Memory, inspect:
-   - canonical project summary
-   - role tabs
-   - Wiki Patch Preview
-   - idea cards
-   - contradiction queue
-   - evidence ledger
-   - ambiguity budget
-   - handoff pack
-   - source traceability
-7. Change review states on idea cards, contradictions, or patch items.
-8. Open the Clarify screen and answer or mark clarification questions.
-
-## How To Run The Expo App
-
-From `submissions/231118081-idea-distillery/app/`:
+Repo kök dizininden:
 
 ```bash
+cd submissions/231118081-idea-distillery/app
 npm install
 npm run start
 ```
 
-Useful commands:
+Geliştirme sırasında kullanılan ek kontroller:
 
 ```bash
-npm run android
-npm run web
 npm run typecheck
+npx expo export --platform web
 ```
 
-## Submission Placeholders
+## Expo Linki
 
-Expo link placeholder: `TBD`
+Expo proje sayfası: https://expo.dev/accounts/samsun081/projects/nokta-draft-231118081
 
-60-second demo video placeholder: `TBD`
+## 60 Saniyelik Demo
 
-APK note / placeholder:
-- APK not included in this README yet.
-- Placeholder: `TBD`
+[Youtube Demo](https://youtube.com/shorts/fzQz6UR1TDY?feature=share)
 
-## Decision Log
+## APK
 
-- Chose React Native + Expo for the mobile MVP because the locked idea calls for a mobile app and the implementation needed to stay bounded.
-- Chose a local deterministic distillation engine instead of a live AI API because the MVP does not require external inference and the submission needed to run without API keys.
-- Chose a four-screen flow because it matches the locked product concept:
-  - Input
-  - Processing
-  - Distilled Memory
-  - Clarify
-- Chose fixed role tabs instead of open-ended adaptive roles to keep the mobile UI bounded and aligned with the locked role catalog.
-- Chose Wiki Patch Preview as a preview artifact rather than real file writes because the idea allows this simplification for MVP.
-- Chose in-memory review state updates for the MVP rather than persistence because persistence would expand scope without changing the core thesis.
+APK indirme bağlantısı: https://expo.dev/artifacts/eas/e2F7ST1x4DDZPFjYmZGuF.apk
 
-## AI Tool Log
+Yerel dosya: `submissions/231118081-idea-distillery/app-release.apk`
 
-- `Codex`
-  - inspected the repository
-  - created `AGENTS.md`
-  - scaffolded the Expo app
-  - implemented the deterministic distillation engine
-  - implemented the React Native UI
-  - wrote and updated the submission documentation
-- `Stitch MCP`
-  - created the UI design project for Nokta Distillery
-  - generated the four required mobile screens
-  - established the shared visual direction used in `DESIGN.md`
+## Karar Günlüğü
 
-Runtime note:
-- The shipped app does not call Codex or Stitch MCP at runtime.
-- Those tools were used during design and implementation only.
+- Sadece Track C seçildi ve ürün tek bir dönüşüm akışı içinde tutuldu: ham notlar -> tekrarları ayıklanmış fikir birimleri -> yapılandırılmış konsept taslağı.
+- Son taslak ana kullanıcı çıktısı olarak ele alındı; fikir birimleri ise iç yapıda veya sınırlı görünürlükte bırakıldı.
+- İlk sürüm, canlı bir AI bağımlılığı olmadan çevrimdışı çalışabilsin diye deterministik ve kural tabanlı bir motorla geliştirildi.
+- Arayüz iki ana ekranla sınırlı tutuldu: Input ve Result.
+- İyileştirme akışı ayrı bir ürün dalına taşınmadan sonuç ekranı içinde hafif tutuldu.
+- Stitch ile üretilen tasarım yönü görsel kaynak olarak kullanıldı: editoryal tipografi, kontrollü yüzeyler, güçlü boşluk kullanımı ve çelişki / belirsizlik alanlarında sıcak vurgu tonları.
+- Kilitlenmiş fikir yönünün dışında ama Nokta tezine hizmet eden bonus bir demo yeteneği eklendi: alınan kararlar, daha net bir v1 yönü için handoff özeti ve değişiklik günlüğü üretir.
 
-## Known Limitations
+## AI Araç Günlüğü
 
-- The distillation engine is heuristic and keyword-based, so it works best on project notes that resemble the intended Nokta input style.
-- Contradiction detection is intentionally narrow and pattern-based.
-- Clarification answers update local review state but do not trigger a deeper regeneration pipeline.
-- Review changes are not persisted after the app closes.
-- The handoff pack is shown in-app but not exported as a file.
-- The patch preview is a strong visual artifact, but it is still only a preview.
+- **Codex**: repository incelemesi yaptı, Expo uygulamasını geliştirdi, deterministik motoru kurdu, React Native arayüzünü bağladı ve bu README dosyasını güncelledi.
+- **Stitch**: son arayüz hiyerarşisini ve görsel stilini yönlendiren input ve result ekranı tasarım yönünü üretti.
+- **GPT-5.4 UI/UX subagent**: brief’i iki ekranlı mobil UX planına ve kapsam disiplini kurallarına dönüştürdü.
+- **GPT-5.4 architecture subagent**: uygulama yapısını gözden geçirdi ve v1 için küçük Expo + TypeScript yapısını doğruladı.
+- **GPT-5.4 distillation-logic subagent**: kural tabanlı akışı ve çelişki / belirsizlik sezgilerini önerdi.
+- **GPT-5.4 README subagent**: submission README yapısını ve zorunlu bölümleri gözden geçirdi.
 
-## Future Directions
+## Bilinen Sınırlamalar
 
-- Persist review states and clarified decisions locally between sessions
-- Add export for handoff pack and wiki patch preview
-- Improve contradiction and deduplication logic beyond simple rules
-- Add optional real markdown persistence as a later extension
-- Add richer update behavior so clarification answers can selectively refresh affected memory items
-- Expand evaluation and challenge flows as separate Nokta modes without changing the core Distillery thesis
+- Motor deterministik sezgiler kullandığı için yakın tekrar tespiti bilinçli olarak basit tutuldu; embedding tabanlı değil.
+- Uygulama şu anda durumu yalnızca bellekte tutuyor. Yerel kayıt, export veya paylaşım akışı henüz yok.
+- Çelişkiler açık kural çiftleri üzerinden tespit edildiği için daha ince çatışmalar gözden kaçabilir.
+- Başlık üretimi sezgisel olduğu için zayıf girdilerde daha genel kalabilir.
+- Karar-kilitli özet yalnızca yerel sentezdir; henüz kalıcı bir handoff çıktısı olarak export edilmez veya kaydedilmez.
+- Expo proje linki, demo linki ve APK bağlantısı eklendi; ancak Expo Go için ayrı bir canlı preview linki paylaşılmamıştır.
