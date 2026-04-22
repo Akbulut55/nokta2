@@ -47,6 +47,8 @@ npx expo export --platform web
 
 ## Expo Linki
 
+Expo Go canlı önizleme / QR linki: `exp://192.168.1.3:8081`
+
 Expo proje sayfası: https://expo.dev/accounts/samsun081/projects/nokta-draft-231118081
 
 ## 60 Saniyelik Demo
